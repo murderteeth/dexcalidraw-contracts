@@ -5,17 +5,19 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
 contract Subscriptions is ERC721Enumerable {
-  uint256 constant fee = 10e18;
-  ERC20 constant dai = ERC20(0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E);  //dai @ ftm
+  uint256 constant public fee = 10e18;
 
-  address public owner;
+  ERC20 immutable public dai;
+  address immutable public owner;
+
   uint256 public nextToken = 1;
   mapping(uint256 => uint256) public subscriptions;
 
   event Subscribe(address indexed user);
   event Sweep(address indexed owner, uint256 balance);
 
-  constructor() ERC721("Dexcalidraw One Year Subscription", "Dexcalidraw-1YR") {
+  constructor(address _dai) ERC721("Dexcalidraw One Year Subscription", "Dexcalidraw-1YR") {
+    dai = ERC20(_dai);
     owner = msg.sender;
   }
 

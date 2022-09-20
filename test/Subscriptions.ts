@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import { ethers } from 'hardhat'
 import { loadFixture, time } from '@nomicfoundation/hardhat-network-helpers'
 import erc20 from '../abi/erc20.json'
+import daiAddress from '../daiAddress.json'
 
 const toBytes32 = (bn: any) => {
   return ethers.utils.hexlify(ethers.utils.zeroPad(bn.toHexString(), 32))
@@ -18,17 +19,17 @@ const fakeDaiBalance = async (address: any, amount: any) => {
     ['uint256', 'uint256'],
     [address, slot])
   await setStorageAt(
-    '0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E', 
+    daiAddress.fantom, 
     index, toBytes32(amount).toString())
 }
 
 describe.only('Subscriptions', function () {
   async function deploySubscriptions() {
     const [owner, user] = await ethers.getSigners()
-    const dai = new ethers.Contract('0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E', erc20)
+    const dai = new ethers.Contract(daiAddress.fantom, erc20)
     const subscriptions = await (
       await ethers.getContractFactory('Subscriptions')
-    ).deploy()
+    ).deploy(daiAddress.fantom)
     return {
       subscriptions: subscriptions.connect(user),
       dai: dai.connect(user),
