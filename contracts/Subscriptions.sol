@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+//SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -16,7 +16,7 @@ contract Subscriptions is ERC721Enumerable {
   event Subscribe(address indexed user);
   event Sweep(address indexed owner, uint256 balance);
 
-  constructor(address _dai) ERC721("Dexcalidraw One Year Subscription", "Dexcalidraw-1YR") {
+  constructor(address _dai) ERC721("Dexcalidraw - Pendragon Plan - One Year Subscription", "Pendragon-1YR") {
     dai = ERC20(_dai);
     owner = msg.sender;
   }

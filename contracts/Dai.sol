@@ -1,3 +1,4 @@
+//SPDX-License-Identifier: MIT
 /**
  *Submitted for verification at Etherscan.io on 2019-11-14
 */
@@ -108,7 +109,7 @@ contract Dai is LibNote {
     // bytes32 public constant PERMIT_TYPEHASH = keccak256("Permit(address holder,address spender,uint256 nonce,uint256 expiry,bool allowed)");
     bytes32 public constant PERMIT_TYPEHASH = 0xea2aa0a1be11a07ed86d755c93467f4f82362b452371d1ba94d1715123511acb;
 
-    constructor(uint256 chainId_) public {
+    constructor(uint256 chainId_) {
         wards[msg.sender] = 1;
         DOMAIN_SEPARATOR = keccak256(abi.encode(
             keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"),
