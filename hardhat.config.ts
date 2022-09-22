@@ -13,6 +13,14 @@ const config: HardhatUserConfig = {
         url: 'https://rpc.ankr.com/fantom'
       }
     },
+    mainnet: {
+      url: 'https://rpc.ankr.com/eth',
+      accounts: [process.env.PRIVATE_KEY || '']
+    },
+    polygon: {
+      url: 'https://rpc.ankr.com/polygon',
+      accounts: [process.env.PRIVATE_KEY || '']
+    },
     opera: {
       url: 'https://rpc.ankr.com/fantom',
       accounts: [process.env.PRIVATE_KEY || '']
@@ -20,7 +28,9 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     apiKey: {
-      opera: 'WCJCN6GBG8ECES1FZ7Q23KMDKVR8VKMFRX'
+      mainnet: process.env.APIKEY_MAINNET || '',
+      polygon: process.env.APIKEY_POLYGON || '',
+      opera: process.env.APIKEY_OPERA || ''
     }
   }
 }
