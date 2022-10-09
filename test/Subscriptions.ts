@@ -19,17 +19,17 @@ const fakeDaiBalance = async (address: any, amount: any) => {
     ['uint256', 'uint256'],
     [address, slot])
   await setStorageAt(
-    daiAddresses.fantom, 
+    daiAddresses.opera, 
     index, toBytes32(amount).toString())
 }
 
 describe.only('Subscriptions', function () {
   async function deploySubscriptions() {
     const [owner, user] = await ethers.getSigners()
-    const dai = new ethers.Contract(daiAddresses.fantom, erc20)
+    const dai = new ethers.Contract(daiAddresses.opera, erc20)
     const subscriptions = await (
       await ethers.getContractFactory('Subscriptions')
-    ).deploy(daiAddresses.fantom)
+    ).deploy(daiAddresses.opera)
     return {
       subscriptions: subscriptions.connect(user),
       dai: dai.connect(user),
